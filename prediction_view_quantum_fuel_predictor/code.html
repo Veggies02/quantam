@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { 'colors': { 'outline': '#859490', 'on-primary-fixed-variant': '#005048', 'outline-variant': '#3c4947', 'error': '#ffb4ab', 'secondary-fixed': '#e0e0ff', 'on-tertiary-fixed-variant': '#005236', 'on-primary': '#003731', 'on-error': '#690005', 'surface-container-high': '#1f2a3d', 'on-tertiary-container': '#00442c', 'tertiary-fixed': '#6ffbbe', 'on-secondary-container': '#a8afff', 'surface-bright': '#2e3a4d', 'surface-container-highest': '#2a3548', 'on-tertiary': '#003824', 'surface-container-lowest': '#030e20', 'on-background': '#d7e3fc', 'background': '#071425', 'tertiary-fixed-dim': '#4edea3', 'surface-tint': '#4fdbc8', 'tertiary-container': '#16bb83', 'surface': '#071425', 'tertiary': '#4edea3', 'primary-fixed-dim': '#4fdbc8', 'on-secondary-fixed': '#000767', 'surface-container-low': '#101c2e', 'on-primary-fixed': '#00201c', 'primary-fixed': '#71f8e4', 'on-surface-variant': '#bbcac6', 'inverse-on-surface': '#253144', 'secondary-container': '#2f3aa3', 'inverse-surface': '#d7e3fc', 'surface-dim': '#071425', 'on-surface': '#d7e3fc', 'on-primary-container': '#00423b', 'surface-variant': '#2a3548', 'on-tertiary-fixed': '#002113', 'secondary': '#bdc2ff', 'error-container': '#93000a', 'primary-container': '#14b8a6', 'secondary-fixed-dim': '#bdc2ff', 'inverse-primary': '#006b5f', 'on-error-container': '#ffdad6', 'on-secondary': '#131e8c', 'primary': '#4fdbc8', 'on-secondary-fixed-variant': '#2f3aa3', 'surface-container': '#142032' }, 'borderRadius': { 'DEFAULT': '0.125rem', 'lg': '0.25rem', 'xl': '0.5rem', 'full': '0.75rem' }, 'spacing': { 'space-2xl': '3rem', 'margin-mobile': '1rem', 'margin-desktop': '1.5rem', 'space-md': '0.75rem', 'gutter-desktop': '1rem', 'space-2xs': '0.125rem', 'space-lg': '1.5rem', 'space-base': '1rem', 'space-xs': '0.25rem', 'gutter-ultrawide': '1.5rem', 'space-sm': '0.5rem', 'space-xl': '2rem' }, 'fontFamily': { 'body-sm': ['Inter'], 'headline-xl': ['Inter'], 'headline-xl-mobile': ['Inter'], 'telemetry-lg': ['JetBrains Mono'], 'body-lg': ['Inter'], 'telemetry-md': ['JetBrains Mono'], 'headline-sm': ['Inter'], 'telemetry-sm': ['JetBrains Mono'], 'headline-md': ['Inter'], 'headline-lg': ['Inter'], 'body-md': ['Inter'], 'label-caps': ['JetBrains Mono'] }, 'fontSize': { 'body-sm': ['12px', { 'lineHeight': '16px', 'letterSpacing': '0.005em', 'fontWeight': '400' }], 'headline-xl': ['32px', { 'lineHeight': '40px', 'letterSpacing': '-0.02em', 'fontWeight': '600' }], 'headline-xl-mobile': ['24px', { 'lineHeight': '32px', 'letterSpacing': '-0.01em', 'fontWeight': '600' }], 'telemetry-lg': ['18px', { 'lineHeight': '24px', 'letterSpacing': '-0.01em', 'fontWeight': '600' }], 'body-lg': ['16px', { 'lineHeight': '24px', 'letterSpacing': '-0.005em', 'fontWeight': '400' }], 'telemetry-md': ['14px', { 'lineHeight': '20px', 'letterSpacing': '0em', 'fontWeight': '500' }], 'headline-sm': ['16px', { 'lineHeight': '24px', 'letterSpacing': '0em', 'fontWeight': '500' }], 'telemetry-sm': ['11px', { 'lineHeight': '14px', 'letterSpacing': '0.02em', 'fontWeight': '400' }], 'headline-md': ['20px', { 'lineHeight': '28px', 'letterSpacing': '-0.01em', 'fontWeight': '500' }], 'headline-lg': ['24px', { 'lineHeight': '32px', 'letterSpacing': '-0.015em', 'fontWeight': '600' }], 'body-md': ['14px', { 'lineHeight': '20px', 'letterSpacing': '0em', 'fontWeight': '400' }], 'label-caps': ['10px', { 'lineHeight': '12px', 'letterSpacing': '0.08em', 'fontWeight': '600' }] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary selection:text-on-primary min-h-screen"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/90 backdrop-blur-xl border-b border-outline-variant/40"><div class="h-16 w-full px-gutter-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md shrink-0"><img alt="NavOptima Maritime Emblem" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1X12hfof9q5F2kr2MV3c2_ChImx9w9yj5LbQAu0DrgrlrVjvfFaROvtO34O5W3xroZuN5Rk2XOFb8CDAA1DaU6npsQGZPWf9ZtcpU7Zgl6x1U3KfJ3_e45AuAP1oTN_mwox15MFPVowu3-esta-NSoGiTKXVOcVgPy0EXMkRiZ63UBHC5lxrASvPtSH6VRg35XlfQlG13ofBVP5arvQP73xH32eswCVR6b9mRZ0XdFddMosmyhoMUGbIM4"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm font-bold tracking-tight text-primary drop-shadow-[0_0_12px_rgba(79,219,200,0.3)]">NAVOPTIMA</span><span class="font-label-caps text-label-caps uppercase tracking-wider text-outline">QUANTUM FLEET INTELLIGENCE</span></div></div><div class="hidden xl:flex items-center gap-space-lg flex-1 justify-center"><nav class="flex items-center gap-space-xs bg-surface-container-low/80 p-space-2xs rounded-lg border border-outline-variant/30" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_0_16px_rgba(20,184,166,0.3)]"><a class="px-space-md py-space-xs rounded font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" data-path="control-room-twin" href="#">Control Room / Twin</a><a class="px-space-md py-space-xs rounded font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" data-path="fleet-operations" href="#">Fleet Operations</a><a class="px-space-md py-space-xs rounded font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" data-path="pareto-route-optimizer" href="#">Pareto Route Optimizer</a><a aria-current="page" class="px-space-md py-space-xs rounded transition-all bg-primary-container text-on-primary-container font-semibold shadow-[0_0_16px_rgba(20,184,166,0.3)]" data-path="quantum-fuel-prediction" href="#">Quantum Fuel Prediction</a></nav><div class="flex items-center gap-space-sm"><div class="flex items-center gap-space-xs px-space-sm py-space-2xs rounded bg-surface-container-low border border-outline-variant/30"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-tertiary"></span></span><span class="font-telemetry-sm text-telemetry-sm text-tertiary">Q-SOLVER: ACTIVE</span><span class="font-telemetry-sm text-telemetry-sm text-outline">(42 Qubits Annealing)</span></div><div class="flex items-center gap-space-xs px-space-sm py-space-2xs rounded bg-surface-container-low border border-outline-variant/30"><span class="font-telemetry-sm text-telemetry-sm text-outline">IMO CII:</span><span class="font-telemetry-sm text-telemetry-sm font-semibold text-primary">A-94%</span></div></div></div><div class="flex items-center gap-space-md shrink-0"><div class="hidden md:flex items-center relative"><span class="material-symbols-outlined absolute left-space-sm text-outline pointer-events-none text-[18px]">search</span><input class="bg-surface-container-low border border-outline-variant/50 rounded pl-space-xl pr-space-md py-space-2xs font-telemetry-sm text-telemetry-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-primary w-48 focus:w-60 transition-all" placeholder="Filter vessels / IMO..." type="text"/></div><div class="hidden 2xl:flex items-center gap-space-xs px-space-sm py-space-2xs bg-surface-container-low/60 rounded border border-outline-variant/30"><span class="font-telemetry-sm text-telemetry-sm text-on-surface-variant font-medium">14:28:02 UTC</span><span class="text-outline text-[10px]">|</span><span class="font-label-caps text-label-caps text-tertiary">GNS SYNCED</span></div><button class="relative p-space-xs text-on-surface-variant hover:text-on-surface transition-colors rounded hover:bg-surface-container-high"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-error-container text-error text-[10px] font-bold flex items-center justify-center border border-surface-container-lowest">3</span></button><div class="flex items-center gap-space-sm pl-space-sm border-l border-outline-variant/30"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-primary/40" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv7OmNTqLGYktvafv5E228Gt5DziAqcZBVj5wPsM4XcCzNh6j-MO68Me-CZ_51bvKpw8MhWRv6-ieZwTeVcQ4W20vzMS2YhlpCL-UJGnzm0icqg10HkYRCePosgR3myraX_5o19C91h6PM4meSpFZ0_IvNpPKYnGMxr2woOGrcVSC31BkZNJCyAVi7iy9f969Fmjr9lK9RVl9SWqRbgz6R1KICdY1XiYJQ4KQLypBvdjsv0P_YzFXJUA"/><div class="hidden sm:flex flex-col text-left"><span class="font-body-sm text-body-sm font-semibold text-on-surface leading-tight">Capt. Elena Vance</span><span class="font-label-caps text-label-caps text-primary tracking-tight">Fleet Ops Director</span></div></div></div></div></header><aside class="fixed left-0 top-16 bottom-0 w-16 bg-surface-container-lowest/80 backdrop-blur-md border-r border-outline-variant/30 z-40 flex flex-col items-center py-space-md justify-between"><div class="flex flex-col gap-space-sm w-full px-space-xs"><button class="w-full h-10 rounded flex items-center justify-center text-primary bg-surface-container hover:bg-surface-container-high transition-colors" title="Tactical Twin View"><span class="material-symbols-outlined text-[20px]">grid_view</span></button><button class="w-full h-10 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" title="Nautical Geospatial Chart"><span class="material-symbols-outlined text-[20px]">explore</span></button><button class="w-full h-10 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" title="Decarbonization Analytics"><span class="material-symbols-outlined text-[20px]">energy_savings_leaf</span></button><button class="w-full h-10 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" title="Telemetry Gateway Logs"><span class="material-symbols-outlined text-[20px]">terminal</span></button></div><div class="flex flex-col gap-space-sm w-full px-space-xs"><button class="w-full h-10 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" title="Platform Diagnostics"><span class="material-symbols-outlined text-[20px]">tune</span></button><button class="w-full h-10 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" title="System Settings"><span class="material-symbols-outlined text-[20px]">settings</span></button></div></aside><div class="pl-16"><main class="relative w-full pt-16 bg-surface min-h-screen px-gutter-desktop py-space-base"><div class="flex flex-col w-full gap-space-lg">
+<div class="flex flex-col xl:flex-row items-start xl:items-center justify-between gap-space-base pb-space-sm">
+<div class="flex flex-col max-w-4xl">
+<div class="flex items-center gap-space-sm mb-space-2xs">
+<span class="font-label-caps text-label-caps px-space-xs py-space-2xs rounded bg-surface-container-high text-primary tracking-widest uppercase">Subsystem 04 // Predictive Kinematics</span>
+<span class="font-telemetry-sm text-telemetry-sm text-outline">Q-VQE Convergence: 99.82%</span>
+<span class="inline-flex h-1.5 w-1.5 rounded-full bg-tertiary animate-pulse"></span>
+</div>
+<h1 class="font-headline-xl text-headline-xl font-bold tracking-tight text-on-surface">Quantum-Inspired Hydrodynamic &amp; Fuel Consumption Predictor</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-2xs">Non-linear multi-variable digital twin estimation engine calibrating hull resistance, weather kinematics, and fuel stoichiometry</p>
+</div>
+<div class="flex items-center gap-space-sm self-stretch xl:self-auto shrink-0">
+<div class="px-space-md py-space-xs rounded bg-surface-container-low flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-outline uppercase">Active Matrix</span>
+<span class="font-telemetry-md text-telemetry-md text-secondary">N=4,096 Tensor Qubits</span>
+</div>
+<button class="px-space-md py-space-xs rounded bg-surface-container-high text-on-surface hover:bg-surface-bright text-body-sm font-medium flex items-center gap-space-xs transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">history</span>
+<span>Replay Historic Run</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT COLUMN: Input Console -->
+<div class="lg:col-span-5 flex flex-col gap-space-base">
+<div class="bg-surface-container-low rounded-lg p-space-base shadow-md flex flex-col gap-space-base">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">tune</span>
+<h2 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Voyage &amp; Vessel Parameters</h2>
+</div>
+<span class="font-label-caps text-label-caps px-space-xs py-space-2xs rounded bg-surface-container text-tertiary">LIVE TELEMETRY SYNC</span>
+</div>
+<!-- Vessel Selector -->
+<div class="flex flex-col gap-space-xs bg-surface-container rounded p-space-sm">
+<label class="font-label-caps text-label-caps text-outline uppercase tracking-wider">Target Vessel Class &amp; Hull ID</label>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">directions_boat</span>
+<div>
+<div class="font-telemetry-md text-telemetry-md text-on-surface font-semibold">MV Polar Quanta</div>
+<div class="font-telemetry-sm text-telemetry-sm text-outline">ULCV-18K-B • IMO 9823411</div>
+</div>
+</div>
+<span class="font-label-caps text-label-caps px-space-xs py-space-2xs rounded bg-surface-container-high text-secondary">POST-PANAMAX</span>
+</div>
+</div>
+<!-- Speed Slider Control -->
+<div class="flex flex-col gap-space-xs bg-surface-container rounded p-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Cruising Speed</span>
+<span class="font-label-caps text-label-caps text-tertiary px-space-2xs py-0.5 rounded bg-tertiary/10">ECO ZONE 16.8-17.8 kts</span>
+</div>
+<div class="flex items-center gap-space-2xs">
+<input class="bg-surface-container-lowest text-primary font-telemetry-md text-telemetry-md text-right px-space-xs py-space-2xs rounded w-16 focus:outline-none focus:bg-surface-container-high" id="speedInput" max="24" min="10" step="0.1" type="number" value="17.5"/>
+<span class="font-telemetry-sm text-telemetry-sm text-outline">kts</span>
+</div>
+</div>
+<div class="relative w-full py-space-xs">
+<div class="w-full h-2 rounded bg-surface-container-lowest relative overflow-hidden">
+<!-- Sweetspot indicator background zone -->
+<div class="absolute h-full bg-tertiary/20 left-[48.5%] w-[7.2%]"></div>
+<div class="h-full bg-gradient-to-r from-primary-container via-primary to-secondary rounded" id="speedProgress" style="width: 53.5%;"></div>
+</div>
+<input class="absolute inset-0 w-full opacity-0 cursor-pointer" id="speedSlider" max="24" min="10" step="0.1" type="range" value="17.5"/>
+</div>
+<div class="flex justify-between font-telemetry-sm text-telemetry-sm text-outline">
+<span>10.0 kts (Loiter)</span>
+<span class="text-tertiary font-medium">17.5 kts (Optimal VQE)</span>
+<span>24.0 kts (Sprint)</span>
+</div>
+</div>
+<!-- Draft & Displacement -->
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="bg-surface-container rounded p-space-sm flex flex-col gap-space-2xs">
+<span class="font-label-caps text-label-caps text-outline uppercase">Dynamic Draft (Fore / Aft)</span>
+<div class="flex items-baseline justify-between font-telemetry-md text-telemetry-md">
+<span class="text-on-surface">14.2m <span class="text-outline text-telemetry-sm">F</span></span>
+<span class="text-secondary">14.6m <span class="text-outline text-telemetry-sm">A</span></span>
+</div>
+<div class="font-telemetry-sm text-telemetry-sm text-tertiary flex items-center gap-space-2xs mt-space-2xs">
+<span class="material-symbols-outlined text-[14px]">height</span>
+<span>Trim: -0.4m Stern Wave</span>
+</div>
+</div>
+<div class="bg-surface-container rounded p-space-sm flex flex-col gap-space-2xs">
+<span class="font-label-caps text-label-caps text-outline uppercase">Displacement Payload</span>
+<div class="font-telemetry-md text-telemetry-md text-on-surface font-semibold">142,500 DWT</div>
+<div class="flex items-center gap-space-xs mt-space-2xs">
+<div class="flex-1 h-1.5 rounded-full bg-surface-container-lowest overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 82%;"></div>
+</div>
+<span class="font-telemetry-sm text-telemetry-sm text-outline">82% Full</span>
+</div>
+</div>
+</div>
+<!-- Weather & Ocean Kinematics -->
+<div class="bg-surface-container rounded p-space-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface">Hydro-Meteorological Boundary</span>
+<span class="font-telemetry-sm text-telemetry-sm text-outline">ECMWF ERA5 Coupled</span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs">
+<div class="p-space-xs rounded bg-surface-container-low flex flex-col">
+<span class="font-label-caps text-label-caps text-outline">Sig Wave Height (Hs)</span>
+<span class="font-telemetry-md text-telemetry-md text-on-surface font-semibold">2.4 m</span>
+<span class="font-telemetry-sm text-telemetry-sm text-secondary">35° Quartering Sea</span>
+</div>
+<div class="p-space-xs rounded bg-surface-container-low flex flex-col">
+<span class="font-label-caps text-label-caps text-outline">Surface Apparent Wind</span>
+<span class="font-telemetry-md text-telemetry-md text-on-surface font-semibold">18.0 kts</span>
+<span class="font-telemetry-sm text-telemetry-sm text-outline">Beaufort Force 5</span>
+</div>
+<div class="p-space-xs rounded bg-surface-container-low flex flex-col">
+<span class="font-label-caps text-label-caps text-outline">Drift Current Vector</span>
+<span class="font-telemetry-md text-telemetry-md text-tertiary font-semibold">+1.4 kts</span>
+<span class="font-telemetry-sm text-telemetry-sm text-outline">Favorable Follow</span>
+</div>
+<div class="p-space-xs rounded bg-surface-container-low flex flex-col">
+<span class="font-label-caps text-label-caps text-outline">Sea Surface Temp</span>
+<span class="font-telemetry-md text-telemetry-md text-on-surface font-semibold">19.2 °C</span>
+<span class="font-telemetry-sm text-telemetry-sm text-outline">ρ = 1025 kg/m³</span>
+</div>
+</div>
+</div>
+<!-- Fuel Selection -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-caps text-label-caps text-outline uppercase tracking-wider">Stoichiometric Fuel Formulation</label>
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="fuel-tab flex items-center justify-between p-space-xs rounded bg-surface-container hover:bg-surface-container-high transition-all text-left group">
+<div class="flex flex-col">
+<span class="font-telemetry-sm text-telemetry-sm font-semibold text-primary">Bio-LNG 100%</span>
+<span class="font-label-caps text-label-caps text-outline">LHV 49.1 MJ/kg</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+</button>
+<button class="fuel-tab flex items-center justify-between p-space-xs rounded bg-surface-container hover:bg-surface-container-high transition-all text-left group">
+<div class="flex flex-col">
+<span class="font-telemetry-sm text-telemetry-sm font-semibold text-on-surface">Methanol Dual</span>
+<span class="font-label-caps text-label-caps text-outline">LHV 19.9 MJ/kg</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[18px]">radio_button_unchecked</span>
+</button>
+<button class="fuel-tab flex items-center justify-between p-space-xs rounded bg-surface-container hover:bg-surface-container-high transition-all text-left group">
+<div class="flex flex-col">
+<span class="font-telemetry-sm text-telemetry-sm font-semibold text-on-surface">e-Ammonia Blend</span>
+<span class="font-label-caps text-label-caps text-outline">LHV 18.6 MJ/kg</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[18px]">radio_button_unchecked</span>
+</button>
+<button class="fuel-tab flex items-center justify-between p-space-xs rounded bg-surface-container hover:bg-surface-container-high transition-all text-left group">
+<div class="flex flex-col">
+<span class="font-telemetry-sm text-telemetry-sm font-semibold text-on-surface">VLSFO Baseline</span>
+<span class="font-label-caps text-label-caps text-outline">LHV 42.7 MJ/kg</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[18px]">radio_button_unchecked</span>
+</button>
+</div>
+</div>
+<!-- Action Triggers -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<button class="w-full py-space-sm px-space-md rounded bg-primary text-on-primary hover:bg-primary-fixed font-headline-sm text-headline-sm font-semibold flex items-center justify-center gap-space-sm transition-all shadow-[0_0_24px_rgba(79,219,200,0.25)]" id="solveBtn">
+<span class="material-symbols-outlined animate-spin text-[20px] hidden" id="calcSpinner">cyclone</span>
+<span class="material-symbols-outlined text-[20px]" id="calcIcon">bolt</span>
+<span>Compute Quantum Prediction</span>
+</button>
+<div class="flex items-center gap-space-xs">
+<button class="flex-1 py-space-xs px-space-sm rounded bg-surface-container hover:bg-surface-container-high text-on-surface text-body-sm font-medium transition-colors text-center">Reset to Baseline</button>
+<button class="flex-1 py-space-xs px-space-sm rounded bg-surface-container hover:bg-surface-container-high text-on-surface text-body-sm font-medium transition-colors text-center">Load Historic Voyage</button>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Prediction & Analysis Output -->
+<div class="lg:col-span-7 flex flex-col gap-space-base">
+<!-- Instant Metric Cards -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-low shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 w-16 h-16 bg-primary/10 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-outline uppercase">Predicted Burn</span>
+<span class="material-symbols-outlined text-primary text-[16px]">local_fire_department</span>
+</div>
+<div class="my-space-xs">
+<div class="font-telemetry-lg text-telemetry-lg text-primary font-bold">42.8 <span class="font-body-sm text-body-sm font-normal text-on-surface">MT/24h</span></div>
+<div class="font-telemetry-sm text-telemetry-sm text-tertiary flex items-center gap-space-2xs mt-0.5">
+<span class="material-symbols-outlined text-[13px]">trending_down</span>
+<span>-13.7% vs Classical</span>
+</div>
+</div>
+<div class="font-label-caps text-label-caps text-outline">Holtrop: 49.6 MT</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-outline uppercase">Emissions Net</span>
+<span class="material-symbols-outlined text-tertiary text-[16px]">eco</span>
+</div>
+<div class="my-space-xs">
+<div class="font-telemetry-lg text-telemetry-lg text-on-surface font-bold">118.2 <span class="font-body-sm text-body-sm font-normal text-on-surface-variant">tCO₂e</span></div>
+<div class="font-telemetry-sm text-telemetry-sm text-tertiary flex items-center gap-space-2xs mt-0.5">
+<span>-18.4 t Saved/Day</span>
+</div>
+</div>
+<div class="font-label-caps text-label-caps text-outline">IMO CII Rating: Tier A</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-outline uppercase">Thermal SFOC</span>
+<span class="material-symbols-outlined text-secondary text-[16px]">speed</span>
+</div>
+<div class="my-space-xs">
+<div class="font-telemetry-lg text-telemetry-lg text-secondary font-bold">168.4 <span class="font-body-sm text-body-sm font-normal text-on-surface-variant">g/kWh</span></div>
+<div class="font-telemetry-sm text-telemetry-sm text-outline flex items-center gap-space-2xs mt-0.5">
+<span>MCR Load: 68.2%</span>
+</div>
+</div>
+<div class="font-label-caps text-label-caps text-outline">MAN B&amp;W 11G95ME-C</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-outline uppercase">Q-Confidence</span>
+<span class="material-symbols-outlined text-primary text-[16px]">verified</span>
+</div>
+<div class="my-space-xs">
+<div class="font-telemetry-lg text-telemetry-lg text-primary font-bold">98.4%</div>
+<div class="font-telemetry-sm text-telemetry-sm text-outline flex items-center gap-space-2xs mt-0.5">
+<span>10k Q-Monte Carlo</span>
+</div>
+</div>
+<div class="font-label-caps text-label-caps text-outline">σ = ±0.42 MT Error</div>
+</div>
+</div>
+<!-- Scientific Graph: Quantum vs Classical Curves -->
+<div class="bg-surface-container-low rounded-lg p-space-base shadow-md flex flex-col gap-space-sm relative">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-xs">
+<div>
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-sm text-headline-sm font-semibold text-on-surface">Non-Linear Tow-Tank vs Quantum Convergence Curve</span>
+<span class="font-label-caps text-label-caps px-space-xs py-space-2xs rounded bg-surface-container text-primary">MULTI-SOLVER FIT</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Speeds 12 to 22 kts factoring dynamic trim superposition and coupled cross-sea wake resistance</p>
+</div>
+<div class="flex items-center gap-space-md font-telemetry-sm text-telemetry-sm shrink-0">
+<div class="flex items-center gap-space-2xs">
+<span class="w-3 h-0.5 bg-secondary inline-block"></span>
+<span class="text-on-surface-variant">Classical Holtrop</span>
+</div>
+<div class="flex items-center gap-space-2xs">
+<span class="w-3 h-1 bg-primary rounded-full inline-block"></span>
+<span class="text-primary font-semibold">NavOptima Quantum</span>
+</div>
+</div>
+</div>
+<!-- Inline SVG Visualization (Speed vs Fuel MT/day) -->
+<div class="w-full h-72 relative bg-surface-container-lowest rounded p-space-sm overflow-hidden flex items-end">
+<svg class="w-full h-full" fill="none" preserveaspectratio="none" viewbox="0 0 700 280">
+<defs>
+<lineargradient id="qAura" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#4fdbc8" stop-opacity="0.32"></stop>
+<stop offset="100%" stop-color="#4fdbc8" stop-opacity="0.0"></stop>
+</lineargradient>
+<filter height="140%" id="glow" width="140%" x="-20%" y="-20%">
+<fegaussianblur result="glow" stddeviation="3"></fegaussianblur>
+<fecomposite in="SourceGraphic" in2="glow" operator="over"></fecomposite>
+</filter>
+</defs>
+<!-- Grid Lines -->
+<line stroke="#1f2a3d" stroke-width="1" x1="60" x2="680" y1="240" y2="240"></line>
+<line stroke="#1f2a3d" stroke-dasharray="2 4" stroke-width="1" x1="60" x2="680" y1="180" y2="180"></line>
+<line stroke="#1f2a3d" stroke-dasharray="2 4" stroke-width="1" x1="60" x2="680" y1="120" y2="120"></line>
+<line stroke="#1f2a3d" stroke-dasharray="2 4" stroke-width="1" x1="60" x2="680" y1="60" y2="60"></line>
+<!-- Vertical speed grid markers -->
+<line stroke="#1f2a3d" stroke-dasharray="2 4" stroke-width="1" x1="120" x2="120" y1="30" y2="240"></line>
+<line stroke="#1f2a3d" stroke-dasharray="2 4" stroke-width="1" x1="240" x2="240" y1="30" y2="240"></line>
+<line stroke="#1f2a3d" stroke-dasharray="2 4" stroke-width="1" x1="360" x2="360" y1="30" y2="240"></line>
+<line stroke="#1f2a3d" stroke-dasharray="2 4" stroke-width="1" x1="480" x2="480" y1="30" y2="240"></line>
+<line stroke="#1f2a3d" stroke-dasharray="2 4" stroke-width="1" x1="600" x2="600" y1="30" y2="240"></line>
+<!-- Y-Axis Labels -->
+<text fill="#859490" font-family="JetBrains Mono" font-size="10" x="25" y="244">20 MT</text>
+<text fill="#859490" font-family="JetBrains Mono" font-size="10" x="25" y="184">40 MT</text>
+<text fill="#859490" font-family="JetBrains Mono" font-size="10" x="25" y="124">60 MT</text>
+<text fill="#859490" font-family="JetBrains Mono" font-size="10" x="25" y="64">80 MT</text>
+<!-- X-Axis Labels -->
+<text fill="#859490" font-family="JetBrains Mono" font-size="10" x="110" y="260">13 kts</text>
+<text fill="#859490" font-family="JetBrains Mono" font-size="10" x="230" y="260">15 kts</text>
+<text fill="#859490" font-family="JetBrains Mono" font-size="10" x="350" y="260">17 kts</text>
+<text fill="#859490" font-family="JetBrains Mono" font-size="10" x="470" y="260">19 kts</text>
+<text fill="#859490" font-family="JetBrains Mono" font-size="10" x="590" y="260">21 kts</text>
+<!-- Confidence Aura Ribbon under Quantum Curve -->
+<path d="M 100,225 C 220,210 320,185 400,150 C 470,118 560,70 660,35 L 660,65 C 560,98 470,140 400,172 C 320,205 220,228 100,238 Z" fill="url(#qAura)"></path>
+<!-- Classical Curve (Holtrop Polynomial Benchmark) -->
+<path d="M 100,230 C 220,218 320,190 400,132 C 480,82 560,52 660,24" fill="none" stroke="#bdc2ff" stroke-dasharray="5 5" stroke-width="2"></path>
+<!-- Quantum-Predicted Curve -->
+<path d="M 100,232 C 220,219 320,195 400,161 C 470,129 560,84 660,50" fill="none" filter="url(#glow)" stroke="#4fdbc8" stroke-width="3"></path>
+<!-- Dynamic Selected Speed Crosshair at 17.5 kts (X: 380) -->
+<line stroke="#4fdbc8" stroke-dasharray="3 3" stroke-width="1.5" x1="380" x2="380" y1="30" y2="240"></line>
+<!-- Data Points at 17.5 kts -->
+<!-- Classical point -->
+<circle cx="380" cy="142" fill="#bdc2ff" r="4.5"></circle>
+<!-- Quantum point -->
+<circle cx="380" cy="172" fill="#4fdbc8" filter="url(#glow)" r="5.5"></circle>
+<circle cx="380" cy="172" fill="#071425" r="2.5"></circle>
+<!-- Delta Measurement Bracket -->
+<line stroke="#4edea3" stroke-width="2" x1="388" x2="388" y1="142" y2="172"></line>
+<line stroke="#4edea3" stroke-width="2" x1="385" x2="391" y1="142" y2="142"></line>
+<line stroke="#4edea3" stroke-width="2" x1="385" x2="391" y1="172" y2="172"></line>
+<!-- Callout Annotation Pill -->
+<rect fill="#142032" height="42" rx="4" stroke="none" width="230" x="405" y="142"></rect>
+<text fill="#4edea3" font-family="JetBrains Mono" font-size="11" font-weight="600" x="415" y="158">DELTA: -6.8 MT/day SAVINGS</text>
+<text fill="#bbcac6" font-family="Inter" font-size="10" x="415" y="174">Dynamic trim &amp; wave superposition</text>
+</svg>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm text-outline px-space-xs">
+<span>Simulation Speed: 17.5 kts</span>
+<span class="text-tertiary">Classical Error Divergence: +15.8% in Beaufort 5</span>
+</div>
+</div>
+<!-- Parametric Sensitivity Matrix & Verification Bar -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-base">
+<!-- Sensitivity Analysis Mini-Chart -->
+<div class="md:col-span-7 bg-surface-container-low rounded-lg p-space-base shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm font-semibold text-on-surface">Sensitivity Breakdown</span>
+<span class="font-label-caps text-label-caps text-outline">VARIATIONAL ELASTICITY</span>
+</div>
+<div class="flex flex-col gap-space-xs mt-space-2xs">
+<div>
+<div class="flex justify-between font-telemetry-sm text-telemetry-sm mb-1">
+<span class="text-on-surface">Cruising Speed Variance (v³)</span>
+<span class="text-primary font-semibold">42.0%</span>
+</div>
+<div class="h-2 rounded bg-surface-container-lowest overflow-hidden">
+<div class="h-full bg-primary rounded" style="width: 42%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-telemetry-sm text-telemetry-sm mb-1">
+<span class="text-on-surface">Ocean Drift &amp; Encounter Waves</span>
+<span class="text-secondary font-semibold">28.0%</span>
+</div>
+<div class="h-2 rounded bg-surface-container-lowest overflow-hidden">
+<div class="h-full bg-secondary rounded" style="width: 28%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-telemetry-sm text-telemetry-sm mb-1">
+<span class="text-on-surface">Hull Micro-Fouling Factor</span>
+<span class="text-on-surface-variant font-semibold">18.0%</span>
+</div>
+<div class="h-2 rounded bg-surface-container-lowest overflow-hidden">
+<div class="h-full bg-on-surface-variant rounded" style="width: 18%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-telemetry-sm text-telemetry-sm mb-1">
+<span class="text-on-surface">Dynamic Trim Angle (-0.4m)</span>
+<span class="text-tertiary font-semibold">12.0%</span>
+</div>
+<div class="h-2 rounded bg-surface-container-lowest overflow-hidden">
+<div class="h-full bg-tertiary rounded" style="width: 12%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Classification & Certified Export Card -->
+<div class="md:col-span-5 bg-surface-container-low rounded-lg p-space-base shadow-sm flex flex-col justify-between gap-space-sm">
+<div class="flex flex-col gap-space-2xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[20px]">verified_user</span>
+<span class="font-headline-sm text-headline-sm font-semibold text-on-surface">Certified Model</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+              Complies with IMO MEPC.333(76) &amp; DNV Fuel Performance Standards for voyage execution.
+            </p>
+</div>
+<div class="flex flex-col gap-space-xs">
+<button class="w-full py-space-xs px-space-sm rounded bg-surface-container-high hover:bg-surface-bright text-on-surface font-body-sm text-body-sm font-medium flex items-center justify-between transition-colors shadow-sm">
+<span class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px]">download_for_offline</span>
+<span>Export Society Report (PDF/XML)</span>
+</span>
+<span class="font-label-caps text-label-caps text-outline">DNV / LR</span>
+</button>
+<button class="w-full py-space-xs px-space-sm rounded bg-secondary-container hover:bg-secondary-fixed-variant text-on-secondary font-body-sm text-body-sm font-semibold flex items-center justify-center gap-space-xs transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">cell_tower</span>
+<span>Transmit to Bridge &amp; Chief Eng</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple reactive bindings for the speed slider and prediction trigger
+  const speedSlider = document.getElementById('speedSlider');
+  const speedInput = document.getElementById('speedInput');
+  const speedProgress = document.getElementById('speedProgress');
+  const solveBtn = document.getElementById('solveBtn');
+  const calcSpinner = document.getElementById('calcSpinner');
+  const calcIcon = document.getElementById('calcIcon');
+
+  function updateSpeed(val) {
+    const min = 10;
+    const max = 24;
+    const percentage = Math.min(Math.max(((val - min) / (max - min)) * 100, 0), 100);
+    speedSlider.value = val;
+    speedInput.value = parseFloat(val).toFixed(1);
+    speedProgress.style.width = percentage + '%';
+  }
+
+  if (speedSlider && speedInput) {
+    speedSlider.addEventListener('input', (e) => updateSpeed(e.target.value));
+    speedInput.addEventListener('change', (e) => updateSpeed(e.target.value));
+  }
+
+  if (solveBtn) {
+    solveBtn.addEventListener('click', () => {
+      calcSpinner.classList.remove('hidden');
+      calcIcon.classList.add('hidden');
+      solveBtn.classList.add('opacity-90');
+      
+      setTimeout(() => {
+        calcSpinner.classList.add('hidden');
+        calcIcon.classList.remove('hidden');
+        solveBtn.classList.remove('opacity-90');
+      }, 750);
+    });
+  }
+
+  // Interactive fuel selector visual active state toggle
+  const fuelTabs = document.querySelectorAll('.fuel-tab');
+  fuelTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      fuelTabs.forEach(t => {
+        const title = t.querySelector('.font-telemetry-sm');
+        const icon = t.querySelector('.material-symbols-outlined');
+        title.classList.remove('text-primary');
+        title.classList.add('text-on-surface');
+        icon.classList.remove('text-primary');
+        icon.classList.add('text-outline-variant');
+        icon.textContent = 'radio_button_unchecked';
+      });
+      const activeTitle = tab.querySelector('.font-telemetry-sm');
+      const activeIcon = tab.querySelector('.material-symbols-outlined');
+      activeTitle.classList.add('text-primary');
+      activeTitle.classList.remove('text-on-surface');
+      activeIcon.classList.add('text-primary');
+      activeIcon.classList.remove('text-outline-variant');
+      activeIcon.textContent = 'check_circle';
+    });
+  });
+</script></main></div></body></html>
