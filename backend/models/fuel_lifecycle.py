@@ -89,6 +89,32 @@ FUEL_DATABASE: Dict[str, Dict[str, Any]] = {
         "fueleu_compliant_2025": True,
         "bio_fraction": 1.00,
         "color_hex": "#06B6D4"
+    },
+    "Liquid Hydrogen": {
+        "name": "Liquid Green Hydrogen (LH2 Cryogenic)",
+        "category": "Zero-Carbon Cryogenic",
+        "lcv_mj_per_kg": 120.0,        # High energy density per mass [MJ/kg]
+        "cf_ttw_co2": 0.000,           # Zero carbon molecule
+        "ttw_ghg_g_per_mj": 0.00,      # Zero stack emissions (PEM fuel cell)
+        "wtt_ghg_g_per_mj": 5.00,      # Renewable water electrolysis & liquefaction
+        "wtw_ghg_g_per_mj": 5.00,      # -94.4% vs FuelEU baseline
+        "price_usd_per_mt": 3800.0,    # Cryogenic green LH2 benchmark [USD/MT]
+        "fueleu_compliant_2025": True,
+        "bio_fraction": 1.00,
+        "color_hex": "#38BDF8"
+    },
+    "Shore Power (OPS)": {
+        "name": "Onshore Power Supply (OPS / Cold Ironing)",
+        "category": "Zero-Emission Port Power",
+        "lcv_mj_per_kg": 3.6,          # 1 kWh = 3.6 MJ equivalent
+        "cf_ttw_co2": 0.000,           # Zero port auxiliary engine combustion
+        "ttw_ghg_g_per_mj": 0.00,      # Zero local emissions at berth
+        "wtt_ghg_g_per_mj": 8.00,      # European clean grid average
+        "wtw_ghg_g_per_mj": 8.00,      # -91.2% vs FuelEU baseline
+        "price_usd_per_mt": 420.0,     # Equivalent green electricity tariff [USD/MWh eq]
+        "fueleu_compliant_2025": True,
+        "bio_fraction": 1.00,
+        "color_hex": "#14B8A6"
     }
 }
 

@@ -151,9 +151,11 @@ class MaritimeQUBOBuilder:
         return Q, Q_dict, offset
 
 
-class QuantumAnnealingSimulator:
+class QuantumInspiredAnnealingSimulator:
     """
-    Simulated Annealing & Leap Ocean Interface for solving Maritime QUBO instances.
+    Simulated Quantum Annealing (SQA) & Classical Simulated Annealing (SA) Engine.
+    Simulates quantum mechanical tunneling and transverse field Hamiltonian dynamics
+    on classical CPU architecture without requiring physical QPU hardware.
     """
 
     @staticmethod
@@ -164,59 +166,117 @@ class QuantumAnnealingSimulator:
         chain_strength: float = 2.5,
         use_leap_cloud: bool = False,
         leap_token: Optional[str] = None,
+        solver_type: str = "sqa",
+        transverse_field_gamma: float = 2.5,
+        trotter_slices: int = 4,
     ) -> Dict[str, Any]:
         """
-        Executes Quantum Annealing on D-Wave QPU or Neal Simulated Annealer.
+        Executes Simulated Quantum Annealing (SQA) or Classical Simulated Annealing (SA)
+        on classical CPU hardware via NumPy.
         """
         Q_matrix, Q_dict, offset = builder.build_qubo_matrix()
         start_time = time.perf_counter()
 
         sample_records = []
-        ground_state = None
-        solver_name = "Neal Classical Simulated Annealer"
+        n_vars = builder.n_vars
+        energy_counts = {}
+        tunnel_events = 0
+        total_evals = 0
 
-        if NEAL_AVAILABLE and not use_leap_cloud:
-            # Use dwave-neal SimulatedAnnealingSampler
-            sampler = neal.SimulatedAnnealingSampler()
-            bqm = dimod.BinaryQuadraticModel.from_qubo(Q_dict, offset=offset)
-            sampleset = sampler.sample(bqm, num_reads=num_reads)
+        # Determine mode
+        is_sqa = (solver_type.lower() == "sqa") or (not use_leap_cloud and solver_type != "classical_sa")
 
-            for sample, energy, num_occ in sampleset.data(fields=["sample", "energy", "num_occurrences"]):
-                bit_list = [int(sample[name]) for name in builder.var_names]
-                sample_records.append({
-                    "sample": sample,
-                    "bits": bit_list,
-                    "energy": round(float(energy), 2),
-                    "num_occurrences": int(num_occ),
-                    "probability": round(float(num_occ) / num_reads, 4),
-                })
+        if is_sqa:
+            solver_name = "Simulated Quantum Annealing (SQA - Transverse-Field Tunneling)"
+            # Simulated Quantum Annealing using Trotterized Transverse-Field Ising simulation
+            # M replicas (Trotter slices), transverse field Gamma(t) decaying to 0
+            M = max(2, min(8, trotter_slices))
+            n_steps = 100
+            gamma_init = transverse_field_gamma
+            
+            for _ in range(num_reads):
+                # Initialize M replicas in classical bit configuration
+                replicas = np.random.randint(0, 2, size=(M, n_vars))
+                
+                # Annealing schedule for Gamma (transverse field) and Temperature T
+                for step in range(n_steps):
+                    s = step / max(1, n_steps - 1)
+                    # Decaying transverse field simulates closing the quantum fluctuations
+                    gamma_t = gamma_init * (1.0 - s)
+                    t_eff = max(0.02, 1.0 - 0.8 * s)
+
+                    # Quantum coupling J_perp between adjacent Trotter slices
+                    # J_perp = -0.5 * t_eff * ln(tanh(gamma_t / (M * t_eff) + 1e-6))
+                    arg_tanh = np.clip(gamma_t / (M * t_eff), 1e-4, 1.0 - 1e-4)
+                    j_perp = -0.5 * t_eff * np.log(np.tanh(arg_tanh))
+
+                    for m in range(M):
+                        # Classical QUBO energy for slice m
+                        state = replicas[m]
+                        e_m = float(state.T @ Q_matrix @ state + offset)
+
+                        # Try random spin flip
+                        flip_idx = np.random.randint(0, n_vars)
+                        state_new = state.copy()
+                        state_new[flip_idx] = 1 - state_new[flip_idx]
+                        e_new = float(state_new.T @ Q_matrix @ state_new + offset)
+
+                        delta_classical = (e_new - e_m) / M
+                        # Inter-slice quantum interaction delta: - j_perp * s_i * (s_i^{m-1} + s_i^{m+1})
+                        prev_m = (m - 1) % M
+                        next_m = (m + 1) % M
+                        sigma_current = 2 * state[flip_idx] - 1
+                        sigma_new = 2 * state_new[flip_idx] - 1
+                        delta_quantum = -j_perp * (sigma_new - sigma_current) * (
+                            (2 * replicas[prev_m, flip_idx] - 1) + (2 * replicas[next_m, flip_idx] - 1)
+                        )
+
+                        delta_total = delta_classical + delta_quantum
+                        total_evals += 1
+
+                        # Quantum Tunneling acceptance criterion
+                        if delta_total < 0 or np.random.rand() < np.exp(-delta_total / t_eff):
+                            replicas[m] = state_new
+                            if delta_classical > 0 and delta_total <= 0:
+                                # Quantum tunneling through a classical barrier!
+                                tunnel_events += 1
+
+                # Select best replica from the M Trotter slices
+                best_slice_idx = 0
+                best_slice_e = float("inf")
+                for m in range(M):
+                    sl_e = float(replicas[m].T @ Q_matrix @ replicas[m] + offset)
+                    if sl_e < best_slice_e:
+                        best_slice_e = sl_e
+                        best_slice_idx = m
+
+                final_state = replicas[best_slice_idx]
+                rounded_e = round(best_slice_e, 1)
+                state_tuple = tuple(final_state.tolist())
+                if (state_tuple, rounded_e) not in energy_counts:
+                    energy_counts[(state_tuple, rounded_e)] = 0
+                energy_counts[(state_tuple, rounded_e)] += 1
+
         else:
-            # High-performance NumPy/SciPy Simulated Annealing fallback
-            solver_name = "NavOptima High-Performance Annealer Engine"
-            best_e = float("inf")
-            best_bits = np.zeros(builder.n_vars, dtype=int)
-            energy_counts = {}
-
+            solver_name = "Classical Simulated Annealing (Thermal Hopping)"
             T_init = 100.0
             T_min = 0.01
             cooling_rate = 0.95
-            n_steps = 150
 
             for _ in range(num_reads):
-                # Random initialization
-                state = np.random.randint(0, 2, size=builder.n_vars)
+                state = np.random.randint(0, 2, size=n_vars)
                 e_current = float(state.T @ Q_matrix @ state + offset)
 
                 T = T_init
                 while T > T_min:
                     for _ in range(3):
-                        # Flip random bit
-                        flip_idx = np.random.randint(0, builder.n_vars)
+                        flip_idx = np.random.randint(0, n_vars)
                         state_new = state.copy()
                         state_new[flip_idx] = 1 - state_new[flip_idx]
                         e_new = float(state_new.T @ Q_matrix @ state_new + offset)
 
                         delta_e = e_new - e_current
+                        total_evals += 1
                         if delta_e < 0 or np.random.rand() < np.exp(-delta_e / max(T, 1e-4)):
                             state = state_new
                             e_current = e_new
@@ -228,21 +288,19 @@ class QuantumAnnealingSimulator:
                     energy_counts[(state_tuple, rounded_e)] = 0
                 energy_counts[(state_tuple, rounded_e)] += 1
 
-                if e_current < best_e:
-                    best_e = e_current
-                    best_bits = state.copy()
-
-            for (s_tuple, e_val), count in sorted(energy_counts.items(), key=lambda x: x[0][1]):
-                sample_dict = {name: s_tuple[i] for i, name in enumerate(builder.var_names)}
-                sample_records.append({
-                    "sample": sample_dict,
-                    "bits": list(s_tuple),
-                    "energy": e_val,
-                    "num_occurrences": count,
-                    "probability": round(count / num_reads, 4),
-                })
+        # Format sample records
+        for (s_tuple, e_val), count in sorted(energy_counts.items(), key=lambda x: x[0][1]):
+            sample_dict = {name: s_tuple[i] for i, name in enumerate(builder.var_names)}
+            sample_records.append({
+                "sample": sample_dict,
+                "bits": list(s_tuple),
+                "energy": e_val,
+                "num_occurrences": count,
+                "probability": round(count / num_reads, 4),
+            })
 
         execution_time_ms = (time.perf_counter() - start_time) * 1000.0
+        tunneling_rate = round((tunnel_events / max(1, total_evals)) * 100.0, 2) if is_sqa else 0.0
 
         # Ground state (lowest energy sample)
         sample_records.sort(key=lambda s: s["energy"])
@@ -286,10 +344,14 @@ class QuantumAnnealingSimulator:
 
         return {
             "solver": solver_name,
+            "solver_type": "sqa" if is_sqa else "classical_sa",
             "num_qubits": builder.n_vars,
             "num_reads": num_reads,
             "annealing_time_us": annealing_time_us,
             "chain_strength": chain_strength,
+            "transverse_field_gamma": transverse_field_gamma if is_sqa else 0.0,
+            "trotter_slices": trotter_slices if is_sqa else 1,
+            "tunneling_rate_percent": tunneling_rate,
             "qpu_access_time_ms": round(annealing_time_us * num_reads / 1000.0, 2),
             "total_execution_time_ms": round(execution_time_ms, 2),
             "ground_state_energy": ground_state_record["energy"],
@@ -306,3 +368,8 @@ class QuantumAnnealingSimulator:
                 for s in sample_records[:15]
             ],
         }
+
+
+# Backwards compatibility alias
+QuantumAnnealingSimulator = QuantumInspiredAnnealingSimulator
+

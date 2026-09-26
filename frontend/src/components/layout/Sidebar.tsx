@@ -47,7 +47,7 @@ export const Sidebar: React.FC<SidebarProps> = () => {
     {
       to: '/benchmark',
       label: 'Algorithm Benchmark',
-      subtitle: 'NSGA-II vs MOEA/D vs Leap',
+      subtitle: 'Q-NSGA-II vs Classical NSGA-II',
       icon: BarChart3,
       badge: 'Stats',
       badgeVariant: 'navy' as const,
@@ -62,10 +62,10 @@ export const Sidebar: React.FC<SidebarProps> = () => {
     },
     {
       to: '/quantum',
-      label: 'Quantum Annealer Lab',
-      subtitle: 'D-Wave QUBO Berth & Dispatch',
+      label: 'Quantum-Inspired SQA Lab',
+      subtitle: 'Classical SQA Berth & Dispatch',
       icon: Cpu,
-      badge: 'QUBO',
+      badge: 'SQA',
       badgeVariant: 'quantum' as const,
     },
   ];

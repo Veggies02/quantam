@@ -36,6 +36,8 @@ const SUPPORTED_FUELS: FuelOption[] = [
   { key: 'Bio-MGO B30', name: 'Bio-MGO B30', category: 'Biofuel Blend', lcv: 41.8, ttwGhG: 52.6, wttGhg: 9.5, wtwGhg: 62.1, pricePerMt: 960, fueleuCompliant: true, color: '#10B981' },
   { key: 'e-Methanol', name: 'e-Methanol', category: 'Synthetic PtX', lcv: 19.9, ttwGhG: 0.0, wttGhg: 12.0, wtwGhg: 12.0, pricePerMt: 1150, fueleuCompliant: true, color: '#8B5CF6' },
   { key: 'Green Ammonia', name: 'Green NH3', category: 'Zero Carbon', lcv: 18.6, ttwGhG: 2.0, wttGhg: 8.5, wtwGhg: 10.5, pricePerMt: 890, fueleuCompliant: true, color: '#06B6D4' },
+  { key: 'Liquid Hydrogen', name: 'Green LH2', category: 'Cryogenic Zero-C', lcv: 120.0, ttwGhG: 0.0, wttGhg: 5.0, wtwGhg: 5.0, pricePerMt: 3800, fueleuCompliant: true, color: '#38BDF8' },
+  { key: 'Shore Power (OPS)', name: 'Shore Power (OPS)', category: 'Cold Ironing', lcv: 3.6, ttwGhG: 0.0, wttGhg: 8.0, wtwGhg: 8.0, pricePerMt: 420, fueleuCompliant: true, color: '#14B8A6' },
 ];
 
 export const PredictionView: React.FC = () => {
