@@ -1,154 +1,187 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {
-  LayoutDashboard,
-  TrendingUp,
-  GitFork,
-  BarChart3,
+  LayoutGrid,
+  Anchor,
+  Navigation,
+  LineChart,
+  Sliders,
+  Fuel,
   ShieldCheck,
-  Cpu,
+  BarChart2,
   Settings,
-  HelpCircle,
-  Radio,
+  ArrowRight,
+  ChevronRight,
+  Compass,
 } from 'lucide-react';
 import { clsx } from 'clsx';
-import { Badge } from '../ui/Badge';
 
 export interface SidebarProps {
-  collapsed?: boolean;
+  onRunOptimizer?: () => void;
 }
 
-export const Sidebar: React.FC<SidebarProps> = () => {
-  const navItems = [
+interface NavItem {
+  to: string;
+  label: string;
+  icon: React.ComponentType<{ className?: string }>;
+  badge?: string;
+}
+
+interface NavSection {
+  group: string;
+  items: NavItem[];
+}
+
+export const Sidebar: React.FC<SidebarProps> = ({ onRunOptimizer }) => {
+  const navSections: NavSection[] = [
     {
-      to: '/dashboard',
-      label: 'Fleet Overview',
-      subtitle: 'Command Hub & Routes',
-      icon: LayoutDashboard,
-      badge: 'Live',
-      badgeVariant: 'teal' as const,
+      group: 'MAIN',
+      items: [
+        {
+          to: '/overview',
+          label: 'Overview',
+          icon: LayoutGrid,
+          badge: 'LIVE',
+        },
+      ],
     },
     {
-      to: '/predict',
-      label: 'PINN Fuel Predictor',
-      subtitle: 'Hybrid Residual Models',
-      icon: TrendingUp,
-      badge: 'PINN',
-      badgeVariant: 'violet' as const,
+      group: 'FLEET OPS',
+      items: [
+        {
+          to: '/fleet',
+          label: 'Fleet Management',
+          icon: Anchor,
+        },
+        {
+          to: '/voyages',
+          label: 'Voyages',
+          icon: Navigation,
+        },
+      ],
     },
     {
-      to: '/optimize',
-      label: 'Multi-Obj Route Optimizer',
-      subtitle: 'Pareto Front Speed & Path',
-      icon: GitFork,
-      badge: 'Pareto',
-      badgeVariant: 'teal' as const,
+      group: 'ANALYTICS',
+      items: [
+        {
+          to: '/prediction',
+          label: 'Prediction',
+          icon: LineChart,
+        },
+        {
+          to: '/optimization',
+          label: 'Optimization',
+          icon: Sliders,
+        },
+        {
+          to: '/fuels',
+          label: 'Fuels',
+          icon: Fuel,
+        },
+      ],
     },
     {
-      to: '/benchmark',
-      label: 'Algorithm Benchmark',
-      subtitle: 'Q-NSGA-II vs Classical NSGA-II',
-      icon: BarChart3,
-      badge: 'Stats',
-      badgeVariant: 'navy' as const,
-    },
-    {
-      to: '/compliance',
-      label: 'IMO CII & Carbon ETS',
-      subtitle: 'FuelEU Maritime Trajectory',
-      icon: ShieldCheck,
-      badge: 'CII Grade',
-      badgeVariant: 'amber' as const,
-    },
-    {
-      to: '/quantum',
-      label: 'Quantum-Inspired SQA Lab',
-      subtitle: 'Classical SQA Berth & Dispatch',
-      icon: Cpu,
-      badge: 'SQA',
-      badgeVariant: 'quantum' as const,
+      group: 'COMPLIANCE',
+      items: [
+        {
+          to: '/compliance',
+          label: 'Regulatory',
+          icon: ShieldCheck,
+        },
+        {
+          to: '/benchmark',
+          label: 'Benchmark',
+          icon: BarChart2,
+        },
+      ],
     },
   ];
 
   return (
-    <aside className="w-64 bg-white border-r border-border flex flex-col justify-between shrink-0 select-none">
-      {/* Navigation Group */}
-      <div className="py-4 px-3 space-y-6">
-        <div>
-          <div className="px-3 pb-2 text-[10px] font-bold uppercase tracking-wider text-navy-muted font-mono">
-            Navigation Modules
+    <aside className="w-56 bg-[#06141D] text-white flex flex-col justify-between shrink-0 select-none border-r border-[#0d2230] z-20">
+      {/* Brand Header */}
+      <div>
+        <div className="px-5 pt-5 pb-5">
+          <div className="flex items-center gap-2.5">
+            <div className="h-7 w-7 rounded-md bg-[#008B7A]/20 border border-[#008B7A]/50 flex items-center justify-center text-[#00E5FF]">
+              <Compass className="h-4 w-4" />
+            </div>
+            <div>
+              <span className="font-extrabold text-base tracking-wider text-white font-sans block leading-none">
+                MERIDIAN
+              </span>
+              <span className="text-[10px] text-slate-400 font-medium tracking-tight mt-0.5 block">
+                Fleet Optimization
+              </span>
+            </div>
           </div>
-          <nav className="space-y-1">
-            {navItems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  className={({ isActive }) =>
-                    clsx(
-                      'group flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-medium transition-all duration-150',
-                      isActive
-                        ? 'bg-teal-light text-teal font-semibold shadow-xs border border-teal/20'
-                        : 'text-navy-secondary hover:text-navy-primary hover:bg-background-panel'
-                    )
-                  }
-                >
-                  <div className="flex items-center gap-3">
-                    <Icon className="h-4 w-4 shrink-0 transition-transform group-hover:scale-110" />
-                    <div>
-                      <div className="leading-tight">{item.label}</div>
-                      <div className="text-[10px] text-navy-muted font-normal">
-                        {item.subtitle}
-                      </div>
-                    </div>
-                  </div>
-                  {item.badge && (
-                    <Badge variant={item.badgeVariant} size="sm">
-                      {item.badge}
-                    </Badge>
-                  )}
-                </NavLink>
-              );
-            })}
-          </nav>
         </div>
 
-        {/* Operational Status Box */}
-        <div className="bg-background-panel border border-border rounded-lg p-3 mx-1">
-          <div className="flex items-center justify-between pb-1.5 border-b border-border/60">
-            <span className="text-[11px] font-semibold text-navy-primary flex items-center gap-1.5">
-              <Radio className="h-3 w-3 text-teal animate-pulse" />
-              Satellite Uplink
-            </span>
-            <span className="text-[10px] font-mono text-success font-bold">100% ONLINE</span>
-          </div>
-          <div className="mt-2 text-[11px] text-navy-secondary space-y-1 font-mono">
-            <div className="flex justify-between">
-              <span className="text-navy-muted">Inmarsat Ping:</span>
-              <span className="font-semibold text-navy-primary">34 ms</span>
+        {/* Grouped Navigation Links */}
+        <div className="px-3 space-y-4">
+          {navSections.map((sec) => (
+            <div key={sec.group}>
+              <div className="px-2 pb-1.5 text-[9px] font-bold text-slate-400 tracking-wider uppercase">
+                {sec.group}
+              </div>
+              <nav className="space-y-0.5">
+                {sec.items.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <NavLink
+                      key={item.to}
+                      to={item.to}
+                      className={({ isActive }) =>
+                        clsx(
+                          'group flex items-center justify-between px-2.5 py-2 rounded-md text-xs font-medium transition-all',
+                          isActive
+                            ? 'bg-[#008B7A] text-white font-semibold shadow-xs'
+                            : 'text-slate-400 hover:text-white hover:bg-white/5'
+                        )
+                      }
+                    >
+                      {({ isActive }) => (
+                        <>
+                          <div className="flex items-center gap-2.5">
+                            <Icon className="h-4 w-4 shrink-0" />
+                            <span className="truncate">{item.label}</span>
+                          </div>
+                          {item.badge && !isActive && (
+                            <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                              {item.badge}
+                            </span>
+                          )}
+                          {isActive && (
+                            <ChevronRight className="h-3.5 w-3.5 text-white/90 shrink-0" />
+                          )}
+                        </>
+                      )}
+                    </NavLink>
+                  );
+                })}
+              </nav>
             </div>
-            <div className="flex justify-between">
-              <span className="text-navy-muted">AIS Feeds:</span>
-              <span className="font-semibold text-teal">2,410 active</span>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
-      {/* Footer Settings & Platform Info */}
-      <div className="p-3 border-t border-border space-y-1">
-        <button className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium text-navy-secondary hover:text-navy-primary hover:bg-background-panel transition-colors">
-          <Settings className="h-4 w-4 text-navy-muted" />
-          <span>System Settings & API Keys</span>
+      {/* Bottom Actions */}
+      <div className="p-3 border-t border-[#0f2434] space-y-2">
+        <button
+          onClick={onRunOptimizer}
+          className="w-full bg-[#008B7A] hover:bg-[#007768] active:bg-[#00685b] text-white text-xs font-bold py-2.5 px-3 rounded-lg flex items-center justify-center gap-2 transition-all shadow-sm group"
+        >
+          <span>Run Optimizer</span>
+          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
         </button>
-        <button className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium text-navy-secondary hover:text-navy-primary hover:bg-background-panel transition-colors">
-          <HelpCircle className="h-4 w-4 text-navy-muted" />
-          <span>Documentation & Architecture</span>
-        </button>
-        <div className="pt-2 px-3 text-[10px] text-navy-muted font-mono">
-          NavOptima Engine v2.4.0-enterprise
-        </div>
+
+        <NavLink
+          to="/settings"
+          className="flex items-center gap-2 px-2 py-1 text-xs text-slate-400 hover:text-white transition-colors rounded-md"
+        >
+          <Settings className="h-3.5 w-3.5" />
+          <span>Settings</span>
+        </NavLink>
       </div>
     </aside>
   );

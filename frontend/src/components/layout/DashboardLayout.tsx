@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { Navbar } from './Navbar';
 import { Sidebar } from './Sidebar';
 import { Modal } from '../ui/Modal';
@@ -11,98 +11,72 @@ export const DashboardLayout: React.FC = () => {
   const [isQuickOptimizeOpen, setIsQuickOptimizeOpen] = useState(false);
   const [optimizationRunning, setOptimizationRunning] = useState(false);
   const [completed, setCompleted] = useState(false);
-  const { selectedVessel, notification, dismissNotification } = useFleet();
+  const { selectedVessel } = useFleet();
+  const navigate = useNavigate();
 
-  const handleRunOptimization = () => {
+  const handleRunOptimizer = () => {
+    navigate('/optimization');
+  };
+
+  const handleExecuteModalOptimizer = () => {
     setOptimizationRunning(true);
     setTimeout(() => {
       setOptimizationRunning(false);
       setCompleted(true);
-    }, 1500);
+    }, 1200);
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background-panel text-navy-primary relative">
-      {/* Toast Notification Banner */}
-      {notification && (
-        <div className="fixed top-18 right-6 z-50 animate-in fade-in slide-in-from-top-3 duration-300">
-          <div className="bg-navy-dark text-white px-4 py-3 rounded-lg shadow-xl border border-teal/40 flex items-center gap-3 text-xs max-w-md">
-            <Sparkles className="h-4 w-4 text-teal shrink-0 animate-pulse" />
-            <p className="flex-1 text-white/90 font-medium">{notification.message}</p>
-            <button
-              onClick={dismissNotification}
-              className="text-white/60 hover:text-white text-base leading-none px-1"
-            >
-              ×
-            </button>
-          </div>
-        </div>
-      )}
+    <div className="h-screen w-screen flex bg-[#F8FAFC] text-slate-800 font-sans overflow-hidden">
+      {/* Dark Sidebar */}
+      <Sidebar onRunOptimizer={handleRunOptimizer} />
 
-      {/* Top Navbar */}
-      <Navbar onOpenQuickAction={() => {
-        setCompleted(false);
-        setIsQuickOptimizeOpen(true);
-      }} />
+      {/* Main Content Pane */}
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+        {/* Top Navbar */}
+        <Navbar />
 
-      {/* Main App Workspace */}
-      <div className="flex flex-1 overflow-hidden">
-        {/* Fixed / Collapsible Sidebar */}
-        <Sidebar />
-
-        {/* Dynamic View Route Content */}
-        <main className="flex-1 overflow-y-auto p-4 lg:p-6 bg-background-panel">
+        {/* Scrollable View Container */}
+        <main className="flex-1 overflow-y-auto bg-[#F8FAFC] p-6">
           <Outlet />
         </main>
       </div>
 
-      {/* Quick Optimization Dispatch Modal */}
+      {/* Quick Optimization Modal */}
       <Modal
         isOpen={isQuickOptimizeOpen}
         onClose={() => setIsQuickOptimizeOpen(false)}
         title={
           <span className="flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-teal" />
-            Instant Route & Speed Co-Optimization
+            <Sparkles className="h-4 w-4 text-[#008B7A]" />
+            Fast Fleet Pareto Optimizer
           </span>
         }
-        description={`Target Vessel: ${selectedVessel.name} (${selectedVessel.imo})`}
+        description={`Active Dispatch: ${selectedVessel.name}`}
         footer={
           <>
             <Button variant="outline" onClick={() => setIsQuickOptimizeOpen(false)}>
               Close
             </Button>
             <Button
-              variant="quantum"
+              variant="primary"
               isLoading={optimizationRunning}
-              onClick={handleRunOptimization}
-              leftIcon={<Play className="h-4 w-4" />}
+              onClick={handleExecuteModalOptimizer}
+              leftIcon={<Play className="h-3.5 w-3.5" />}
             >
-              {completed ? 'Re-execute Solver' : 'Execute NSGA-II + D-Wave Hybrid'}
+              {completed ? 'Re-execute Solver' : 'Execute QIEA-NSGA-II'}
             </Button>
           </>
         }
       >
-        <div className="space-y-4 text-xs">
-          <div className="p-3 bg-teal-light rounded-lg border border-teal/20 text-navy-primary">
-            <p className="font-semibold text-teal mb-1">Active Multi-Objective Solver Objectives:</p>
-            <ul className="list-disc list-inside space-y-1 text-navy-secondary">
-              <li>Objective 1: Minimize Total Heavy Fuel Oil (HFO) consumption (Metric Tons)</li>
-              <li>Objective 2: Minimize Estimated Time of Arrival (ETA) delay penalty (Hours)</li>
-              <li>Constraint: Maintain IMO CII Rating &ge; B under sea state Beaufort 5+</li>
-            </ul>
-          </div>
-
+        <div className="space-y-3 text-xs text-slate-600">
+          <p>
+            Initiates simulated quantum rotation gates across speed, draft trim, and alternative bunkering schedules.
+          </p>
           {completed && (
-            <div className="p-3 bg-success-light rounded-lg border border-success/30 flex items-start gap-2.5">
-              <CheckCircle2 className="h-5 w-5 text-success shrink-0 mt-0.5" />
-              <div>
-                <p className="font-bold text-success">Optimal Pareto Solution Dispatched!</p>
-                <p className="text-navy-secondary mt-0.5">
-                  Calculated recommended speed reduction to <strong>17.2 kts</strong> with 5.8 MT/day fuel savings
-                  and verified 0% CII downgrade risk.
-                </p>
-              </div>
+            <div className="p-3 bg-emerald-50 text-emerald-800 rounded-lg border border-emerald-200 flex items-center gap-2">
+              <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+              <span>Optimal Pareto Solution Dispatched!</span>
             </div>
           )}
         </div>
